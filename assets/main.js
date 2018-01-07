@@ -2,10 +2,6 @@ $(document).ready(function() {
 
     get_the_items();
 
-
-    console.log("Winner winner");
-
-
     function get_the_items() {
         $("#new").empty();
         $("#eaten").empty();
@@ -28,25 +24,43 @@ $(document).ready(function() {
 
     $("#new").on("click", ".item", function() {
         var theData = $(this).attr("data");
-        console.log(theData);
-
-        update_post(theData);
-
+        update_post(theData, "PUT");
     })
 
     function update_post(theData) {
         $.ajax({
-            type: "POST",
+            type: "PUT",
             url: "/api",
             data: {
                 the_id: parseInt(theData)
             }
         }).then(function() {
-
             get_the_items();
         })
-    }
+    };
 
+    $("#submit_new_burger").on("click", function(event) {
+        event.preventDefault();
+        const theNextOne = $("#burger").val().trim();
 
+        if (theNextOne.length > 5) {
+            post_new_burger(theNextOne);
 
-});
+        } else {
+            alert("NO NO NO");
+        }
+    })
+
+    function post_new_burger(name) {
+        $.ajax({
+            type: "POST",
+            url: "/api",
+            data: {
+                new_name: name
+            }
+        }).then(function() {
+            get_the_items();
+        })
+    };
+
+})

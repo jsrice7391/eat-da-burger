@@ -3,16 +3,16 @@ h1 {
 }
 
 ul {
-    background-color: lawngreen;
     float: left;
     width: 100%;
 }
 
 .item {
     background-color: red;
+    margin: 2.5%;
     display: block;
 }
 
-li:hover {
-    height: 120px;
+#new_burger {
+    margin-top: 15%;
 }
