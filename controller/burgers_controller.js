@@ -21,27 +21,33 @@ module.exports = function(app) {
         });
     });
 
+    app.put("/api/burgers", function(req, res) {
+        let condition = "id = " + req.body.the_id;
 
+        console.log("condition", condition);
 
-    app.post("/api", function(req, res) {
-        console.log(req.body);
-
-        const newer = "INSERT INTO burgers (burger_name) VALUE (?);";
-        db.query(newer, req.body.new_name, function(err, results) {
-            if (err) throw err;
-            return res.json(results);
+        burger.update(condition, function(result) {
+            if (result.changedRows == 0) {
+                // If no rows were changed, then the ID must not exist, so 404
+                return res.status(404).end();
+            } else {
+                res.status(200).end();
+            }
         })
     })
 
-    app.put("/api", function(req, res) {
-        const updateQuer = "UPDATE burgers SET eaten = true WHERE id = " + parseInt(req.body.the_id) + ";";
 
-        db.query(updateQuer, function(err, results) {
-            if (err) throw err;
-            return res.json(results);
-        })
+    app.delete("/api/burgers/:id", function(req, res) {
+        var condition = "id = " + req.params.i
 
-
+        burger.delete(condition, function(result) {
+            if (result.changedRows == 0) {
+                // If no rows were changed, then the ID must not exist, so 404
+                return res.status(404).end();
+            } else {
+                res.status(200).end();
+            }
+        });
 
     })
 }

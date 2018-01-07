@@ -17,8 +17,12 @@ var burger = {
     oneBurger: function(id) {
         orm.selectOne("burgers", "id", id)
     },
-    updateBurger: function(id) {
-        orm.updateOne('burgers', "eaten", "true", "id", id);
+    update: function(id, cb) {
+        orm.update('burgers', id, function(res) {
+            cb(res);
+
+
+        });
     }
 }
 

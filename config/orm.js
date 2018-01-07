@@ -10,6 +10,29 @@ function printQuestionMarks(num) {
     return arr.toString();
 }
 
+function objToSql(ob) {
+    var arr = [];
+
+    // loop through the keys and push the key/value as a string int arr
+    for (var key in ob) {
+        var value = ob[key];
+        // check to skip hidden properties
+        if (Object.hasOwnProperty.call(ob, key)) {
+            // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+            if (typeof value === "string" && value.indexOf(" ") >= 0) {
+                value = "'" + value + "'";
+            }
+            // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
+            // e.g. {sleepy: true} => ["sleepy=true"]
+            arr.push(key + "=" + value);
+        }
+    }
+
+    // translate array of strings to a single comma-separated string
+    return arr.toString();
+}
+
+
 const orm = {
     addOne: function(table, cols, vals, callback) {
         var queryString = "INSERT INTO " + table;
@@ -41,16 +64,24 @@ const orm = {
             return results;
         })
     },
-    updateOne: function(tableName, param, value, trackedValue, newValue) {
-        const updateQuer = "UPDATE ?? SET ?? = ?? WHERE ?? = ? ;";
+    update: function(table, condition, cb) {
+        var queryString = "UPDATE burgers ";
 
-        connection.query(updateQuer, [tableName, param, value, trackedValue, newValue], function(err, results) {
-            if (err) throw err;
-            return results;
+        queryString += " SET eaten = true WHERE ";
+        queryString += condition;
+
+        console.log(queryString);
+        connection.query(queryString, function(err, result) {
+            if (err) {
+                throw err;
+            }
+
+            cb(result);
+
         })
-
     }
-}
+};
+
 
 
 

@@ -1,10 +1,9 @@
 $(document).ready(function() {
 
     // Clicking on the items and moving them to the eaten column
-    $("#new").on("click", ".item", function() {
-        alert("clicked");
+    $(".change-status").on("click", function() {
 
-        var theData = $(this).attr("data");
+        var theData = $(this).data("id");
         update_post(theData, "PUT");
     })
 
@@ -27,7 +26,7 @@ $(document).ready(function() {
     function update_post(theData) {
         $.ajax({
             type: "PUT",
-            url: "/api",
+            url: "/api/burgers",
             data: {
                 the_id: parseInt(theData)
             }
