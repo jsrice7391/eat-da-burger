@@ -1,1 +1,14 @@
 <h1>Here is an Index</h1>
+
+
+
+{{#each burgers}}
+    {{#if status}}
+     <h2>{{id}} {{burger_name}}</h2>
+    {{else}}
+    <h3>{{id}} {{burger_name}}</h3>
+{{/if}}
+{{/each}}
+
+
+
