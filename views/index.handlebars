@@ -1,20 +1,18 @@
 
+<ul>
+    {{#each burgers}} 
+    {{#unless eaten}} 
+    {{> burgers/burger-block eaten=true}} 
+    {{/unless}} 
 
-<div class="row">
-<div class="col-md-offset-2 col-md-3">
-<h2>Fresh</h2>
-    <ul id="new">
-    </ul>
-</div>
+    {{/each}}
+</ul>
 
+<h2>Cats that are sleepy!</h2>
 
-<div class="col-md-offset-1 col-md-3">
-    <h2>Easten</h2>
-    <ul id="eaten">
-    </ul>
-</div>
-</div>
-
+<ul>
+    {{#each burgers}} {{#if eaten}} {{> burgers/burger-block eaten=false}} {{/if}} {{/each}}
+</ul>
 
 
 <div class="col-md-10 col-md-offset-1">

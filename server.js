@@ -12,15 +12,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Allow the assets folder to be used for static content
-app.use("/assets", express.static("assets"));
+app.use("/public", express.static("public"));
 
 // Establish the engine as Handlebars and useing the Default view as the main.handlebars file
 app.engine("handlebars", exphb({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Create some routers
-require("./routes/appRoutes")(app);
-require("./routes/htmlroutes")(app);
+require("./controller/burgers_controller")(app);
 
 
 

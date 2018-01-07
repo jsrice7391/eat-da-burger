@@ -1,17 +1,27 @@
 var path = require("path");
 const db = require("../config/connection.js");
+const burger = require("../models/burger.js");
+
 
 
 
 module.exports = function(app) {
-    app.get("/api", function(req, res) {
-        const get_em = "SELECT * FROM burgers";
-        db.query(get_em, function(err, results) {
-            if (err) throw err;
-            res.json(results);
-        })
 
-    })
+    app.get("/", function(req, res) {
+        burger.allBurger(function(data) {
+            var hbsObject = { burgers: data };
+            res.render("index", hbsObject);
+        });
+    });
+
+    app.post("/api/burgers", function(req, res) {
+        burger.newBurger(["burger_name"], [req.body.new_name], function(result) {
+            console.log(result.insertId)
+            res.json({ id: result.insertId });
+        });
+    });
+
+
 
     app.post("/api", function(req, res) {
         console.log(req.body);

@@ -1,30 +1,9 @@
 $(document).ready(function() {
 
-    get_the_items();
-
-
-    // The original load of the items from the database
-    function get_the_items() {
-        $("#new").empty();
-        $("#eaten").empty();
-
-        $.ajax({
-            type: "GET",
-            url: "/api",
-        }).done(function(results) {
-            $.each(results, function(index, burger) {
-                if (burger.eaten == 0) {
-                    $("#new").append("<li class='item' data='" + burger.id + "'>" + burger.id + " " + burger.burger_name + "</li>");
-                } else {
-                    $("#eaten").append("<li class='item' data='" + burger.id + "'>" + burger.id + " " + burger.burger_name + "</li>");
-                }
-            });
-        });
-    }
-
-
     // Clicking on the items and moving them to the eaten column
     $("#new").on("click", ".item", function() {
+        alert("clicked");
+
         var theData = $(this).attr("data");
         update_post(theData, "PUT");
     })
@@ -53,7 +32,7 @@ $(document).ready(function() {
                 the_id: parseInt(theData)
             }
         }).then(function() {
-            get_the_items();
+            console.log("Posted");
         })
     };
 
@@ -62,12 +41,12 @@ $(document).ready(function() {
     function post_new_burger(name) {
         $.ajax({
             type: "POST",
-            url: "/api",
+            url: "/api/burgers",
             data: {
                 new_name: name
             }
         }).then(function() {
-            get_the_items();
+            console.log("Posted");
         })
     };
 
