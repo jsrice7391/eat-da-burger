@@ -7,13 +7,17 @@ $(document).ready(function() {
         update_post(theData, "PUT");
     })
 
+    $(".delete-burger").on("click", function() {
+        var theData = $(this).data("id");
+        delete_burger(theData)
+    })
+
 
 
     $("#submit_new_burger").on("click", function(event) {
         event.preventDefault();
         const theNextOne = $("#burger").val().trim();
-
-        if (theNextOne.length > 5) {
+        if (theNextOne.length >= 3) {
             post_new_burger(theNextOne);
 
         } else {
@@ -31,9 +35,22 @@ $(document).ready(function() {
                 the_id: parseInt(theData)
             }
         }).then(function() {
-            console.log("Posted");
+            location.reload();
+
         })
     };
+
+    function delete_burger(theData) {
+        $.ajax({
+            type: "DELETE",
+            url: "/api/burgers",
+            data: {
+                the_id: parseInt(theData)
+            }
+        }).then(function() {
+            location.reload();
+        })
+    }
 
 
     // THe new post 
@@ -45,8 +62,9 @@ $(document).ready(function() {
                 new_name: name
             }
         }).then(function() {
-            console.log("Posted");
+            $("#burger").val("");
+            location.reload();
+
         })
     };
-
-})
+});

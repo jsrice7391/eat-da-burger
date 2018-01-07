@@ -37,16 +37,11 @@ module.exports = function(app) {
     })
 
 
-    app.delete("/api/burgers/:id", function(req, res) {
-        var condition = "id = " + req.params.i
+    app.delete("/api/burgers", function(req, res) {
+        var condition = "id = " + req.body.the_id;
+        burger.delete(condition, function(err, result) {
+            res.status(200).end();
 
-        burger.delete(condition, function(result) {
-            if (result.changedRows == 0) {
-                // If no rows were changed, then the ID must not exist, so 404
-                return res.status(404).end();
-            } else {
-                res.status(200).end();
-            }
         });
 
     })

@@ -75,9 +75,14 @@ const orm = {
             if (err) {
                 throw err;
             }
-
             cb(result);
-
+        })
+    },
+    delete: function(table, condition, cb) {
+        var queryString = "DELETE FROM " + table + " WHERE " + condition + ";";
+        connection.query(queryString, function(err, results) {
+            if (err) throw err;
+            cb(results)
         })
     }
 };

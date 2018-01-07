@@ -20,9 +20,12 @@ var burger = {
     update: function(id, cb) {
         orm.update('burgers', id, function(res) {
             cb(res);
-
-
         });
+    },
+    delete: function(id, cb) {
+        orm.delete('burgers', id, function(res) {
+            cb(res);
+        })
     }
 }
 

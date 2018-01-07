@@ -1,5 +1,11 @@
 
+<div class="col-md-10 col-md-offset-2">
+
+
+
+
 <ul>
+    <h2>Menu</h2>
     {{#each burgers}} 
     {{#unless eaten}} 
     {{> burgers/burger-block eaten=true}} 
@@ -7,21 +13,16 @@
     {{/each}}
 </ul>
 
-<h2>Cats that are sleepy!</h2>
+
 
 <ul>
+    <h2>Already Gone</h2>
+
     {{#each burgers}} {{#if eaten}} {{> burgers/burger-block eaten=false}} {{/if}} {{/each}}
 </ul>
 
+</div>
 
-<div class="col-md-10 col-md-offset-1">
-<div class="text-center">
-<form id="new_burger">
-    <input type="text" id="burger">
-    <button id="submit_new_burger">Submit</button>
-</form>
-</div>
-</div>
 
 
 
