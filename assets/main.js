@@ -2,6 +2,8 @@ $(document).ready(function() {
 
     get_the_items();
 
+
+    // The original load of the items from the database
     function get_the_items() {
         $("#new").empty();
         $("#eaten").empty();
@@ -21,23 +23,13 @@ $(document).ready(function() {
     }
 
 
-
+    // Clicking on the items and moving them to the eaten column
     $("#new").on("click", ".item", function() {
         var theData = $(this).attr("data");
         update_post(theData, "PUT");
     })
 
-    function update_post(theData) {
-        $.ajax({
-            type: "PUT",
-            url: "/api",
-            data: {
-                the_id: parseInt(theData)
-            }
-        }).then(function() {
-            get_the_items();
-        })
-    };
+
 
     $("#submit_new_burger").on("click", function(event) {
         event.preventDefault();
@@ -51,6 +43,22 @@ $(document).ready(function() {
         }
     })
 
+
+    // Moving the text to the unfinished column
+    function update_post(theData) {
+        $.ajax({
+            type: "PUT",
+            url: "/api",
+            data: {
+                the_id: parseInt(theData)
+            }
+        }).then(function() {
+            get_the_items();
+        })
+    };
+
+
+    // THe new post 
     function post_new_burger(name) {
         $.ajax({
             type: "POST",
