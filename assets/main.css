@@ -1,3 +1,18 @@
 h1 {
     color: blue;
 }
+
+ul {
+    background-color: lawngreen;
+    float: left;
+    width: 100%;
+}
+
+.item {
+    background-color: red;
+    display: block;
+}
+
+li:hover {
+    height: 120px;
+}
