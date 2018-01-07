@@ -1,0 +1,27 @@
+body {
+    background-image: url("../images/spirationDark.png")
+}
+
+h1,
+h2 {
+    color: rgb(202, 202, 218);
+}
+
+ul {
+    float: left;
+    width: 30%;
+    height: 400px;
+    overflow: scroll;
+}
+
+.item {
+    background-color: white;
+    margin: 2.5%;
+    display: block;
+    width: 100%;
+    border: 1px solid black;
+}
+
+#new_burger {
+    margin-top: 2.5%;
+}
