@@ -6,8 +6,10 @@
     <button class="change-status" data-id="{{id}}" data-newstatus="{{eaten}}">
        EAT THIS
     </button>
-    {{/if}}
-
-
+    {{else}}
     <button class="delete-burger btn-primary" data-id="{{this.id}}">DELETE!</button>
+{{/if}}
+
+
+    {{!-- <button class="delete-burger btn-primary" data-id="{{this.id}}">DELETE!</button> --}}
 </li>
