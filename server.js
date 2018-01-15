@@ -25,5 +25,5 @@ require("./controller/burgers_controller")(app);
 
 // Start the app
 app.listen(port, function() {
-    console.log("APP is listening on Port: " + PORT);
+    console.log("APP is listening on Port: " + port);
 });
