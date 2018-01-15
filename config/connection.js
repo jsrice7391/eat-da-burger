@@ -1,9 +1,10 @@
 const mysql = require("mysql");
+require("dotenv").config();
 
 const db = mysql.createConnection({
     host: "localhost",
-    user: "root",
-    password: "@GoPats2017",
+    user: process.env.DBUSER,
+    password: process.env.DBPASS,
     database: "burgers_db"
 });
 
