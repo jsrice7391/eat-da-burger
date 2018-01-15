@@ -5,6 +5,8 @@ const app = express();
 const exphb = require("express-handlebars");
 
 var port = process.env.PORT || 8000;
+var db = require("./config/connection");
+
 
 
 // Allow boy barser to parse the data
@@ -22,7 +24,10 @@ app.set("view engine", "handlebars");
 require("./controller/burgers_controller")(app);
 
 
-// Start the app
-app.listen(port, function() {
-    console.log("APP is listening on Port: " + port);
-});
+db.connect(function(err) {
+    // Start the app
+    app.listen(port, function() {
+        console.log("APP is listening on Port: " + port);
+    });
+
+})
