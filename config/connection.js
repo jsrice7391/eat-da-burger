@@ -3,8 +3,8 @@ require("dotenv").config();
 
 const db = mysql.createConnection({
     host: "localhost",
-    user: process.env.DBUSER,
-    password: process.env.DBPASS,
+    user: "root",
+    password: "@GoPats2017",
     database: "burgers_db"
 });
 
