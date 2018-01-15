@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const exphb = require("express-handlebars");
 
-var PORT = process.env.PORT || 8000;
+var port = process.env.PORT || 8000;
 
 
 // Allow boy barser to parse the data
@@ -24,6 +24,6 @@ require("./controller/burgers_controller")(app);
 
 
 // Start the app
-app.listen(PORT, function() {
+app.listen(port, function() {
     console.log("APP is listening on Port: " + PORT);
 });
