@@ -5,7 +5,8 @@ const db = mysql.createConnection({
     host: "localhost",
     user: process.env.DBUSER,
     password: process.env.DBPASS,
-    database: "burgers_db"
+    database: "burgers_db",
+    use_env_variable: process.env.JAWSDB_URL
 });
 
 db.connect(function(err) {
