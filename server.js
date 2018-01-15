@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const exphb = require("express-handlebars");
 
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 3306;
 var db = require("./config/connection");
 
 
