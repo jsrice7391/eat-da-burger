@@ -25,10 +25,7 @@ app.set("view engine", "handlebars");
 require("./controller/burgers_controller")(app);
 
 
-db.connect(function(err) {
-    // Start the app
-    app.listen(port, function() {
-        console.log("APP is listening on Port: " + port);
-    });
 
-})
+app.listen(port, function() {
+    console.log("APP is listening on Port: " + port);
+});

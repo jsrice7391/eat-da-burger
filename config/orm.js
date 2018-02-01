@@ -48,12 +48,15 @@ const orm = {
             if (err) throw err;
             callback(results);
         })
+
     },
     selectAll: function(tableToSearch, callBack) {
         let queryString = "SELECT * FROM burgers_db.burgers;";
         connection.query(queryString, function(err, results) {
             if (err) throw err;
             callBack(results);
+
+
         })
 
     },
@@ -82,7 +85,9 @@ const orm = {
         var queryString = "DELETE FROM " + table + " WHERE " + condition + ";";
         connection.query(queryString, function(err, results) {
             if (err) throw err;
-            cb(results)
+            cb(results);
+
+
         })
     }
 };
